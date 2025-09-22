@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Analito — AI-Powered DeFi Portfolio Assistant (README)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#eef3fa; --card:#fff; --accent:#4a90e2; --muted:#6b7280; --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Helvetica Neue", monospace;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, "Segoe UI", Arial, sans-serif;color:#111;}
+    .wrap{max-width:900px;margin:40px auto;padding:28px;}
+    .card{background:var(--card);border-radius:14px;padding:28px;box-shadow:0 6px 30px rgba(20,30,60,0.06);}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:18px;}
+    .logo{width:64px;height:64px;border-radius:12px;background-image:url("https://cdn-icons-png.flaticon.com/512/4712/4712105.png");background-size:cover;background-position:center;flex:0 0 64px;}
+    h1{margin:0;font-size:24px;}
+    p.lead{margin:6px 0 18px;color:var(--muted);}
+    h2{color:var(--accent);margin-top:20px;}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px;}
+    .feature{background:#fbfdff;border-radius:10px;padding:12px;border:1px solid rgba(74,144,226,0.06);}
+    pre{background:#0b1221;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;}
+    code.inline{background:#f3f6fb;padding:2px 6px;border-radius:6px;font-family:var(--mono);font-size:13px;}
+    ul{margin:8px 0 12px 20px;}
+    .muted{color:var(--muted);}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;}
+    .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .pill{display:inline-block;background:#f3f6fb;padding:6px 10px;border-radius:999px;color:var(--accent);font-weight:600;}
+    .cta{display:inline-block;margin-top:12px;padding:10px 14px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;}
+    @media (max-width:600px){.grid-two{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Analito — AI-Powered DeFi Portfolio Assistant</h1>
+          <p class="lead">Analito is a chat-style DeFi assistant that tracks Ethereum wallets, aggregates multiple wallets into a dashboard, and provides AI-driven portfolio insights and strategy suggestions via the AURA API.</p>
+        </div>
+      </header>
+
+      <section>
+        <h2>✨ Features</h2>
+        <div class="features">
+          <div class="feature">
+            <strong>Multi-wallet support</strong>
+            <p class="muted">Save multiple wallets with nicknames (e.g. "Main Wallet", "Cold Storage").</p>
+          </div>
+          <div class="feature">
+            <strong>Portfolio tracking</strong>
+            <p class="muted">Fetch balances and strategy suggestions from the AURA API.</p>
+          </div>
+          <div class="feature">
+            <strong>AI Insights</strong>
+            <p class="muted">Summarizes exposure (ETH / stablecoins / altcoins), flags risk, and offers suggestions.</p>
+          </div>
+          <div class="feature">
+            <strong>Multi-wallet dashboard</strong>
+            <p class="muted">Aggregate total USD value and distribution across saved wallets.</p>
+          </div>
+          <div class="feature">
+            <strong>Chat-based UI</strong>
+            <p class="muted">Natural chat commands, avatars, and a friendly assistant flow.</p>
+          </div>
+          <div class="feature">
+            <strong>Local persistence</strong>
+            <p class="muted">Wallets are stored in <code class="inline">localStorage</code> so they persist between sessions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>🚀 Getting Started</h2>
+        <p>Simply open the live app in your browser:</p>
+        <a href="https://www.analito.vercel.app" target="_blank" class="cta">👉 Launch Analito</a>
+
+        <h3>Chat Commands</h3>
+        <ul>
+          <li><code class="inline">add wallet &lt;address&gt; &lt;nickname&gt;</code> — Save a new wallet (e.g. <code class="inline">add wallet 0xabc... Main</code>).</li>
+          <li><code class="inline">list wallets</code> — Show saved wallets.</li>
+          <li><code class="inline">check wallet &lt;nickname&gt;</code> — Fetch balances & strategies for a saved wallet.</li>
+          <li><code class="inline">dashboard</code> — Aggregate view across all saved wallets with AI insight.</li>
+        </ul>
+
+        <h3>Example</h3>
+        <pre>// User
+add wallet 0xf95F2865C05... Main
+
+// Analito
+✅ Wallet "Main" added.
+
+// User
+dashboard
+
+// Analito
+📊 Multi-Wallet Dashboard
+Total value: ~$12,450
+ETH: $7,200 (57.8%)
+Stablecoins: $3,000 (24.1%)
+Altcoins: $2,250 (18.1%)
+💡 Portfolio Insight: Most of your holdings are in ETH → strong but volatile.
+</pre>
+      </section>
+
+      <section>
+        <h2>🧠 How the AI layer works</h2>
+        <p class="muted">Analito applies lightweight heuristics on token lists returned by the AURA API to generate insights. The built-in intelligence currently:</p>
+        <ul>
+          <li>Detects stablecoins (USDT, USDC, DAI) and ETH exposure.</li>
+          <li>Generates a short summary for each network's token list.</li>
+          <li>Aggregates USD balances across wallets and classifies portfolio composition (ETH / stable / altcoins).</li>
+          <li>Provides human-friendly recommendations like "high altcoin exposure -> higher risk".</li>
+        </ul>
+        <p class="muted">Future improvements can replace or augment these heuristics with LLM prompts that explain strategy choices, risk tradeoffs, and suggested rebalances.</p>
+      </section>
+
+      <section>
+        <h2>🛠 Tech Stack</h2>
+        <ul>
+          <li>Frontend: Vanilla HTML / CSS / JavaScript</li>
+          <li>Data: AURA API (<code class="inline">/api/portfolio/strategies</code>)</li>
+          <li>Storage: <code class="inline">localStorage</code> for saved wallets</li>
+          <li>UI: Chat-style message bubbles with avatars and spinner</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🔮 Roadmap</h2>
+        <ul>
+          <li>Visuals: progress bars, pie charts for the dashboard</li>
+          <li>Multi-chain support: Polygon, Arbitrum, Optimism, etc.</li>
+          <li>Alerts & notifications (APY changes, large balance swings)</li>
+          <li>LLM-powered analysis for deeper natural-language explanations</li>
+          <li>Optional backend to proxy API calls (resolve CORS, add rate-limiting)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🤝 Contributing</h2>
+        <p class="muted">Contributions are welcome! Suggested workflow:</p>
+        <pre>1. Fork the repo
+2. Create a branch: git checkout -b feature/your-feature
+3. Commit: git commit -m "Add feature"
+4. Push & open a PR</pre>
+      </section>
+
+      <section>
+        <h2>📜 License</h2>
+        <p class="muted">This project is released under the <strong>MIT License</strong>. Use, modify, and share freely.</p>
+      </section>
+
+      <footer>
+        <p class="muted">Built with ❤️ — Analito · Powered by AURA (AdEx)</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
